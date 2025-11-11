@@ -40,3 +40,29 @@ let score = 0;
 
 //Initializing time
 let time = 10;
+
+text.focus();
+
+function addWordToDOM() {
+  randomWord = words[Math.floor(Math.random() * words.length)];
+  word.innerHTML = randomWord;
+}
+
+function updateScore() {
+  score++;
+  scoreEl.innerHTML = score;
+}
+
+text.addEventListener("input", e => {
+  const insertedText = e.target.value.trim();
+
+  if (insertedText === randomWord) {
+    updateScore();
+    addWordToDOM();
+    e.target.value = "";
+    time += 5;
+    updateTimeDisplay();
+  }
+});
+
+
